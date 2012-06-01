@@ -1,0 +1,17 @@
+
+	# Error handlers
+	ErrorDocument 500 /errordocs/500.html
+
+	WSGIPassAuthorization On
+	WSGIScriptAlias "/" "/var/www/reviewboard.osoco.es/htdocs/reviewboard.wsgi/"
+
+	<Directory "/var/www/reviewboard.osoco.es/htdocs">
+		AllowOverride All
+		Options -Indexes FollowSymLinks
+		Allow from all
+	</Directory>
+
+	# Alias static media requests to filesystem
+	Alias /media "/var/www/reviewboard.osoco.es/htdocs/media"
+	Alias /errordocs "/var/www/reviewboard.osoco.es/htdocs/errordocs"
+	Alias /favicon.ico "/var/www/reviewboard.osoco.es/htdocs/media/rbcommons/images/favicon.png"
