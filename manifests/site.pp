@@ -1,4 +1,5 @@
-define reviewboard::site($install_parent_path = "/var/www", $admin_user = "admin", $admin_password = "admin", $admin_email) {
+define reviewboard::site($install_parent_path = '/var/www', $admin_user = 'admin', $admin_password = 'admin', 
+                         $admin_email, $is_https = false, $ssl_cert = "", $ssl_cert_key = "") {
 
    include apache2
    include apache2_wsgi
@@ -17,9 +18,9 @@ define reviewboard::site($install_parent_path = "/var/www", $admin_user = "admin
         server_admin_mail => "$admin_mail",
         document_root => "$install_parent_path/$sitename/htdocs",
         virtualhost_specifics => template("reviewboard/reviewboard_virtual_host_specifics.erb"),
-        is_https => false,
-#        ssl_cert => "$ssl_cert",
-#        ssl_cert_key => "$ssl_cert_key",
+        is_https => $is_https,
+        ssl_cert => "$ssl_cert",
+        ssl_cert_key => "$ssl_cert_key",
     }
 
 }
